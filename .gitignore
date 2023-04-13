@@ -3,3 +3,4 @@ node_modules/
 client/dist/
 scripts/builds/
 scripts/index.js
+scripts/index.mjs
