@@ -1,0 +1,21 @@
+{
+  "name": "sub_kpi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "del:dist": "rm -rf client/dist",
+    "build": "npm run del:dist && cp -r client/public/ client/dist/ && cp client/src/index.js client/dist/index.js",
+    "deploy": "node scripts",
+    "build:deploy": "npm run build && npm run deploy",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "archiver": "^5.2.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6"
+  }
+}

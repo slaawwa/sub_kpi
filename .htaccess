@@ -1,0 +1,27 @@
+
+# NEXT_LINE:PHP_AUTO_REPLACE_BACKEND:_backend
+RewriteRule ^(api|graphql)/{0,1}(.*)?$ _backend/$2 [L,PT]
+
+
+# DO NOT REMOVE THIS LINE AND THE LINES BELLOW SSL_REDIRECT:maks.kpi.wtf
+RewriteEngine on
+# RewriteCond %{HTTPS} off
+# RewriteCond %{HTTP_HOST} (www\.)?maks.kpi.wtf
+# RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# DO NOT REMOVE THIS LINE AND THE LINES BELLOW SSL_REDIRECT:maks.kpi.wtf
+
+# MAYBE GO TO:ONE_POINT
+# RewriteRule ^static/(.*)$ client/upload/$1 [L,PT]
+
+# PHP_AUTO_COMMENT:DEV_AUTH:2
+# RewriteCond %{HTTP_COOKIE} !_dev=\d;? [NC]
+# RewriteRule ^(.*)?$ login.php [NC,L,PT]
+
+# RewriteRule ^(dev|admin)/{0,1}(.*)?$ client/admin/$2 [L,PT]
+
+# :ONE_POINT
+# RewriteRule ^static/(.*)$ client/upload/$1 [L,PT]
+
+# NEXT_LINE:PHP_AUTO_REPLACE_FRONTEND:dist_templated-hielo
+RewriteRule ^(.*)?$ client/dist/$1 [L,PT]
+

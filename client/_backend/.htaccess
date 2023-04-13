@@ -1,0 +1,28 @@
+#AddDefaultCharset utf-8
+# Options -Indexes
+# IndexIgnore */*
+# 
+# RewriteEngine on
+# 
+# # If a directory or a file exists, use the request directly
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+# 
+# RewriteRule . index.php
+
+
+AddDefaultCharset utf-8
+Options -Indexes
+IndexIgnore */*
+#Order Allow,Deny
+Allow from All
+
+
+# Header set Access-Control-Allow-Origin *
+# Header set Access-Control-Allow-Credentials true
+# Header set Access-Control-Allow-Methods GET,HEAD,OPTIONS,POST,PUT
+# Header set Access-Control-Allow-Headers Access-Control-Allow-Headers,Origin,Accept,X-Requested-With,Content-Type,Access-Control-Request-Method,Access-Control-Request-Headers
+
+RewriteEngine on
+
+RewriteRule ^ index.php [L]
