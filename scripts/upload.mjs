@@ -23,6 +23,7 @@ export default async (filePath, {
   appToken,
   usid,
   url,
+  ...otherProps
 } = {}) => {
   try {
     let has = await existsAsync(filePath)
@@ -42,6 +43,7 @@ export default async (filePath, {
         usid,
         file: createReadStream(file),
         ...(!to ? null : { to }),
+        ...otherProps,
       },
     })
     if (data !== 'true') {

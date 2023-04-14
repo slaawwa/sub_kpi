@@ -1,11 +1,16 @@
-const archiver = require('archiver')
-const { existsSync, mkdirSync, createWriteStream } = require('fs')
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import archiver from 'archiver'
+import { existsSync, mkdirSync, createWriteStream } from 'fs'
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 if (!existsSync(`${__dirname}/builds/`)) {
   mkdirSync(`${__dirname}/builds/`);
 }
 
-module.exports = (distPath, globMap=false) => {
+export default (distPath, globMap=false) => {
   return new Promise((res, rej) => {
     const d = new Date()
     const f = n => `${n > 9 ? '' : 0}${n}` /* format */

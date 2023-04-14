@@ -6,7 +6,8 @@
   "scripts": {
     "del:dist": "rm -rf client/dist",
     "build": "npm run del:dist && cp -r client/public/ client/dist/ && cp client/src/index.js client/dist/index.js",
-    "deploy": "node scripts",
+    "deploy": "node scripts/index.mjs",
+    "deploy:back": "node scripts/index.mjs --isBack",
     "build:deploy": "npm run build && npm run deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
