@@ -4,15 +4,33 @@ import zip from './zip.mjs'
 import upload from './upload.mjs'
 import creds from './creds.mjs'
 
+import { createInterface } from 'node:readline/promises'
+import { stdin as input, stdout as output } from 'node:process'
+
 const unlinkAsync = promisify(unlink)
+
+async function prompts(helpTextLine=' > ') {
+  const rl = createInterface({ input, output })
+  const response = await rl.question(helpTextLine)
+  rl.close()
+  return response
+}
 
 
 const start = async (isBackend) => {
-  console.log(' - isBackend:12 >', isBackend); // eslint-disable-line no-console
+  const envs = Object.keys(creds).join('|')
+  let _env = ''
+  try {
+    do {
+      _env = await prompts(`${_env ? 'Try again': 'Pls'}, input env[${envs}]:`);
+    } while (!creds[_env])
+  } catch(e) {
+    console.log('\nINPUT ERROR // 28')
+  }
 
   const zipPath = await zip(isBackend ? '../_backend/' : '../client/dist/')
   const uploaded = await upload(zipPath, {
-    ...creds,
+    ...creds[_env],
     pathKey: isBackend ? 'path:back' : 'path:client',
   })
   console.log(' - Uploaded:18 >', uploaded); // eslint-disable-line no-console
